@@ -50,7 +50,7 @@ func main() {
 
 	returnStmt := &Inst{
 		Preds:   []*Inst{printStmt},
-		Content: "fmt.Println(\"return 0\")",
+		Content: "return",
 		Succs:   nil,
 	}
 
