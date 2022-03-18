@@ -1,9 +1,9 @@
 package cfgGenerics_test
 
 import (
+	cfgGenerics "cfg-generics"
 	"testing"
 
-	"example.com/cfgGenerics"
 	"github.com/gostaticanalysis/testutil"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
