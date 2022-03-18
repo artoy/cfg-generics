@@ -4,7 +4,11 @@ import "github.com/numacci/go-algorithm/datastruct"
 
 const stackCap = 10000
 
-func NewCFGs[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) []*CFG[T] {
+type Function[T any] struct {
+	CFGs []*CFG[T]
+}
+
+func NewFunction[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) Function[T] {
 	workList := datastruct.NewStack(stackCap)
 	visited := datastruct.NewSet()
 
@@ -39,5 +43,9 @@ func NewCFGs[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) []*CFG[T]
 		cfgs = append(cfgs, &CFG[T]{Nodes: b})
 	}
 
-	return cfgs
+	return Function[T]{CFGs: cfgs}
+}
+
+func (f Function[T]) GetFromHead() {
+
 }
