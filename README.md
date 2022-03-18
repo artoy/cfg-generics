@@ -8,7 +8,7 @@ All you need is...
 - a function returns successors of each instruction
 
 ## Note
-`cfg-generics` is pre-release. In this version, you can only generate and dump CFG. More functions such as analysis or optimize with CFG, are going to be added in next version.
+`cfg-generics` is <span style="color: red; ">**pre-release**</span>. In this version, you can only generate and dump CFG. More functions such as analysis or optimize with CFG, are going to be added in next version.
 
 ## Requirement
 Go 1.18+
