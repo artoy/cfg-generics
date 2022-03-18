@@ -8,7 +8,7 @@ type Function[T any] struct {
 	CFGs []*CFG[T]
 }
 
-func NewFunction[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) Function[T] {
+func NewFunction[T any](hs []*T, preds func(*T) []*T, succs func(*T) []*T) Function[T] {
 	workList := datastruct.NewStack(stackCap)
 	visited := datastruct.NewSet()
 
@@ -22,6 +22,7 @@ func NewFunction[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) Funct
 		b := make([]*T, 0)
 
 		s := workList.Top().(*T)
+		workList.Pop()
 		if visited.Contains(s) {
 			continue
 		}
@@ -30,7 +31,8 @@ func NewFunction[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) Funct
 			visited.Insert(s)
 			b = append(b, s)
 
-			if len(succs(s)) != 1 || len(preds(succs(s)[0])) > 1 {
+			succ := succs(s)
+			if len(succs(s)) != 1 || len(preds(succ[0])) > 1 {
 				for _, v := range succs(s) {
 					workList.Push(v)
 				}
@@ -46,6 +48,7 @@ func NewFunction[T any](hs []*T, succs func(*T) []*T, preds func(*T) []*T) Funct
 	return Function[T]{CFGs: cfgs}
 }
 
+// TODO:
 func (f Function[T]) GetFromHead() {
 
 }
